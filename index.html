@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central Vercel Master API Gateway</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">V</div>
+        <div>
+          <h1>Central Master API Gateway</h1>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Account: abysyweb@gmail.com</p>
+        </div>
+      </div>
+      <div class="badge">
+        <div class="pulse"></div> Operational
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- Left Column: Controls & Endpoints -->
+      <div>
+        <div class="card" style="margin-bottom: 1.5rem;">
+          <div class="card-title">
+            <span>Master Authorization Key</span>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">X-API-KEY</span>
+          </div>
+          <div class="key-box">
+            <span id="masterKeyDisplay">vcl_master_key_abysyweb_2026</span>
+            <button class="btn-copy" id="copyKeyBtn">Copy Key</button>
+          </div>
+          <div class="form-group">
+            <label for="apiKeyInput">Active Test Header Key</label>
+            <input type="text" id="apiKeyInput" value="vcl_master_key_abysyweb_2026">
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Available Modules</div>
+          <div class="endpoint-list">
+            <div class="endpoint-item active" data-key="health">
+              <div>
+                <span class="method get">GET</span>
+                <span style="font-weight: 600; margin-left: 8px;">System Health & Uptime</span>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">/api/health</span>
+            </div>
+
+            <div class="endpoint-item" data-key="ai">
+              <div>
+                <span class="method post">POST</span>
+                <span style="font-weight: 600; margin-left: 8px;">AI Gateway (Gemini)</span>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">/api/ai/generate</span>
+            </div>
+
+            <div class="endpoint-item" data-key="mail">
+              <div>
+                <span class="method post">POST</span>
+                <span style="font-weight: 600; margin-left: 8px;">Transactional Email</span>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">/api/mail/send</span>
+            </div>
+
+            <div class="endpoint-item" data-key="utils">
+              <div>
+                <span class="method get">GET</span>
+                <span style="font-weight: 600; margin-left: 8px;">UUID & Utilities</span>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">/api/utils/uuid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Explorer & Output -->
+      <div>
+        <div class="card">
+          <div class="card-title">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="httpMethod" class="method get">GET</span>
+              <span id="endpointPath" style="font-family: monospace; font-size: 1rem;">/api/health</span>
+            </div>
+          </div>
+
+          <form id="requestForm">
+            <div class="form-group" id="requestBodyGroup" style="display: none;">
+              <label for="requestBody">JSON Payload</label>
+              <textarea id="requestBody" rows="6"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">Execute Endpoint Request</button>
+          </form>
+
+          <div style="margin-top: 1.5rem;">
+            <div class="tabs">
+              <button class="tab active" data-tab="response">API Response</button>
+              <button class="tab" data-tab="snippet">Frontend Integration Code</button>
+            </div>
+
+            <pre id="responseOutput">// Click "Execute Endpoint Request" to view live response payload...</pre>
+            <pre id="snippetOutput" style="display: none;"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
